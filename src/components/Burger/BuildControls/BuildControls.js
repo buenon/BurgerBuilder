@@ -5,7 +5,9 @@ import BuildControl from './BuildControl'
 const buildControls = (props) => {
     return (
         <div className={classes.BuildControls}>
-            <div className={classes.Price}>Amont: <b>{props.price.toFixed(2)}$</b></div>
+            <div className={classes.Price}>Amont:
+                <b>{props.price.toFixed(2)}$</b>
+            </div>
             {Object
                 .keys(props.ingredients)
                 .map((key) => {
@@ -17,7 +19,8 @@ const buildControls = (props) => {
                         type={key}
                         label={ing.label}
                         disabled={props.disabled[key]}/>
-                })};
+                })}
+                <button className={classes.OrderButton} disabled={!props.purchasable}>ORDER NOW!</button>
         </div>
     );
 };
