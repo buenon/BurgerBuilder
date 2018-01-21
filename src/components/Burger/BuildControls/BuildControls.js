@@ -6,7 +6,9 @@ const buildControls = (props) => {
     return (
         <div className={classes.BuildControls}>
             <div className={classes.Price}>Amont:
-                <b>{props.price.toFixed(2)}$</b>
+                <b>{props
+                        .price
+                        .toFixed(2)}$</b>
             </div>
             {Object
                 .keys(props.ingredients)
@@ -20,7 +22,10 @@ const buildControls = (props) => {
                         label={ing.label}
                         disabled={props.disabled[key]}/>
                 })}
-                <button className={classes.OrderButton} disabled={!props.purchasable}>ORDER NOW!</button>
+            <button 
+                className={classes.OrderButton} 
+                disabled={!props.purchasable}
+                onClick={props.showModal}>ORDER NOW!</button>
         </div>
     );
 };
