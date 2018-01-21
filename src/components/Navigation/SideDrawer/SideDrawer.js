@@ -17,7 +17,6 @@ const SideDrawer = (props) => {
                     <NavigationItems/>
                 </nav>
             </div>
-
         </Auxi>
     );
 };
