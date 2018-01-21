@@ -4,7 +4,6 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Backdrop from '../../components/UI/Backdrop/Backdrop';
 
 const LIMIT_INGREDIENTS = false;
 
@@ -89,6 +88,10 @@ class BurgerBuilder extends Component {
         this.setState({showSummary: false});
     }
 
+    purchaseContinueHandler = () => {
+        alert("Not implemented");
+    }
+
     render() {
         const disabledInfo = {
             ...this.state.ingredients
@@ -103,7 +106,11 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <Modal show={this.state.showSummary} close={this.purchaseCancelHandler}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                    <OrderSummary 
+                        ingredients={this.state.ingredients} 
+                        cancel={this.purchaseCancelHandler} 
+                        continue={this.purchaseContinueHandler} 
+                        price={this.state.totalPrice} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls

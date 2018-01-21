@@ -5,10 +5,7 @@ import BuildControl from './BuildControl'
 const buildControls = (props) => {
     return (
         <div className={classes.BuildControls}>
-            <div className={classes.Price}>Amont:
-                <b>{props
-                        .price
-                        .toFixed(2)}$</b>
+            <div className={classes.Price}>Amont: <b>{props.price.toFixed(2)}$</b>
             </div>
             {Object
                 .keys(props.ingredients)
