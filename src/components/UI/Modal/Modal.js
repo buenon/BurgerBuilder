@@ -1,11 +1,11 @@
 import React from 'react';
 import classes from './Modal.css'
-import Auxi from '../../../hoc/Auxi';
+import Wrapper from '../../../hoc/Wrapper';
 import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = (props) => {
     return (
-        <Auxi>
+        <Wrapper>
             <Backdrop show={props.show} clicked={props.close} />
             <div
                 className={classes.Modal}
@@ -15,7 +15,7 @@ const Modal = (props) => {
                 }}>
                 {props.children}
             </div>
-        </Auxi>
+        </Wrapper>
     );
 };
 

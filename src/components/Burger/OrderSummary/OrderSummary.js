@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../../hoc/Auxi'
+import Wrapper from '../../../hoc/Wrapper'
 import Button from '../../UI/Button/Button';
 
 const OrderSummary = (props) => {
@@ -10,7 +10,7 @@ const OrderSummary = (props) => {
 
     return (
         <div>
-            <Aux>
+            <Wrapper>
                 <h3>Your order:</h3>
                 <p>Chosen Ingredients</p>
                 <ul>
@@ -20,7 +20,7 @@ const OrderSummary = (props) => {
                 <div>Continue to checkout?</div>
                 <Button type="Danger" clicked={props.cancel}>CANCEL</Button>
                 <Button type="Success" clicked={props.continue}>CONTINUE</Button>
-            </Aux>
+            </Wrapper>
         </div>
     );
 };

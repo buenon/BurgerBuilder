@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Auxi';
+import Wrapper from '../../hoc/Wrapper';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -100,12 +100,12 @@ class BurgerBuilder extends Component {
 
     render() {
         return (
-            <Aux>
+            <Wrapper>
                 <Modal show={this.state.showSummary} close={this.purchaseCancelHandler}>
                     {this.getModalContent()}
                 </Modal>
                 {this.getBurger()}
-            </Aux>
+            </Wrapper>
         );
     }
 
@@ -126,10 +126,6 @@ class BurgerBuilder extends Component {
     }
 
     getBurger() {
-        if (this.state.loading) {
-            return <Spinner />;
-        }
-
         if (this.state.ingredients) {
             const disabledInfo = { ...this.state.ingredients };
 
@@ -141,7 +137,7 @@ class BurgerBuilder extends Component {
             }
 
             return (
-                <Aux>
+                <Wrapper>
                     <Burger ingredients={this.state.ingredients} />
                     <BuildControls
                         ingredients={this.state.ingredients}
@@ -151,7 +147,7 @@ class BurgerBuilder extends Component {
                         disabled={disabledInfo}
                         purchasable={this.state.purchasable}
                         showModal={this.purchaseHandler} />
-                </Aux>
+                </Wrapper>
             );
         }
     }

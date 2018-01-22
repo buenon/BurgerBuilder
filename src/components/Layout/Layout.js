@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Auxi';
+import Wrapper from '../../hoc/Wrapper';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
@@ -9,24 +9,24 @@ class Layout extends Component {
         showSideDrawer: false
     }
     openSideDrawerHandler = () => {
-        this.setState({showSideDrawer: true});
+        this.setState({ showSideDrawer: true });
     }
-    
+
     closeSideDrawerHandler = () => {
-        this.setState({showSideDrawer: false});
+        this.setState({ showSideDrawer: false });
     }
-    
+
     render() {
         return (
-            <Aux>
+            <Wrapper>
                 <Toolbar open={this.openSideDrawerHandler} />
                 <SideDrawer show={this.state.showSideDrawer} close={this.closeSideDrawerHandler} />
                 <main className={classes.content}>
                     {this.props.children}
                 </main>
-            </Aux>
+            </Wrapper>
         );
     }
-} 
+}
 
 export default Layout;
