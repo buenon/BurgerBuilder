@@ -2,7 +2,7 @@ import React from 'react';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
 import classes from './Burger.css';
 
-const burger = (props) => {
+const Burger = (props) => {
     let ingArr = Object
         .keys(props.ingredients)
         .map(igKey => {
@@ -28,4 +28,4 @@ const burger = (props) => {
     );
 };
 
-export default burger;
+export default Burger;
