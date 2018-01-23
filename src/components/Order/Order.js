@@ -1,11 +1,14 @@
 import React from 'react';
 import classes from './Order.css';
+import Burger from '../Burger/Burger';
 
 const Order = (props) => {
     return (
         <div className={classes.Order}>
-            <p>Ingredients:</p>
-            <p>Price: <strong></strong></p>
+            <div className={classes.BurgerWrapper}>
+                <Burger ingredients={props.ingredients} />
+            </div>
+            <p>Price: <strong>{props.price}</strong></p>
         </div>
     );
 };

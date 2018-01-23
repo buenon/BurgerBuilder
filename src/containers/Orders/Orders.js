@@ -17,8 +17,9 @@ class Orders extends Component {
     }
     
     render() {
-        let orders = this.state.orders.map(order => {
-            return <Order ingredients={order.ingredients} price={order.price} />
+        let orders = Object.keys(this.state.orders).map(key => {
+            let order = this.state.orders[key];
+            return <Order key={key} ingredients={order.ingredients} price={order.price} />
         });
 
         return (
