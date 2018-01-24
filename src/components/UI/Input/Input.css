@@ -1,0 +1,43 @@
+.Wrapper {
+    position: relative;
+    text-align: initial;
+    width: 200px;
+    margin: auto;
+    padding-top: 16px;
+}
+
+.Input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.Label {
+    position: absolute;
+    bottom: 3px;
+    color: #aaa;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.3s ease-out;
+}
+
+.Underline {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-bottom: 2px solid #ccc;
+    transform: scale(0);
+    transition: transform 0.3s ease-out;
+}
+
+.Wrapper[focused] .Underline {
+    transform: scale(1);
+}
+
+.Wrapper[has-text] .Label {
+    font-size: 12px;
+    bottom: 24px;
+}
