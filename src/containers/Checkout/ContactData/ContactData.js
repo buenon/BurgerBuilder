@@ -8,11 +8,57 @@ import WithErrorHandler from '../../../hoc/WithErrorHandler';
 
 class ContactData extends Component {
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            zip: '',
+        formConfig: {
+            name: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: "Name",
+                value: '',
+            },
+            street: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: "Street",
+                value: '',
+            },
+            zip: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: "ZIP Code",
+                value: '',
+            },
+            country: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: "Country",
+                value: '',
+            },
+            email: {
+                type: 'input',
+                config: {
+                    type: 'email',
+                },
+                label: "E-Mail",
+                value: '',
+            },
+            deliveryMethod: {
+                type: 'select',
+                config: {
+                    options: [
+                        { value: 'fastest', caption: "Fastest" },
+                        { value: 'cheepest', caption: "Cheepest" },
+                    ]
+                },
+                value: 'fastest',
+            },
         },
         loading: false
     };
@@ -20,19 +66,17 @@ class ContactData extends Component {
     orderHandler = (event) => {
         event.preventDefault();
         this.setState({ loading: true });
+        let formConfig = this.state.formConfig;
+
+        let orderData = {};
+        for (let key in formConfig) {
+            orderData[key] = formConfig[key].value;
+        }
+
         axios.post('/orders.json', {
             ingredients: this.props.ingredients,
             price: this.props.totalPrice,
-            customer: {
-                name: "Nadav Bueno",
-                address: {
-                    street: "My street",
-                    zip: "12345",
-                    country: "Israel"
-                },
-                email: "test@nadav.com",
-            },
-            deliveryMethod: "fastest"
+            orderData: orderData,
         }).then(res => {
             this.setState({ loading: false, showSummary: false });
             this.props.history.push('/');
@@ -55,14 +99,38 @@ class ContactData extends Component {
             return <Spinner />;
         }
         else {
-            return <form >
-                <Input type="text" name="name" label="Name" />
-                <Input type="email" name="email" label="Email" />
-                <Input type="text" name="street" label="Street" />
-                <Input type="text" name="zip" label="Zip Code" />
-                <Button type="Success" clicked={this.orderHandler}>Order</Button>
+            let elements = [];
+            for (let key in this.state.formConfig) {
+                let elem = this.state.formConfig[key];
+                elements.push({
+                    key: key,
+                    config: elem
+                })
+            }
+
+            return <form onSubmit={this.orderHandler}>
+                {elements.map(element => {
+                    return <Input
+                        key={element.key}
+                        elementType={element.config.type}
+                        config={element.config.config}
+                        label={element.config.label}
+                        value={element.config.value}
+                        changed={(event) => { this.inputChangedHandler(event, element.key) }} />
+                })}
+
+                <Button type="Success">Order</Button>
             </form>
         }
+    }
+
+    inputChangedHandler = (event, id) => {
+        let updatedFormConfig = { ...this.state.formConfig };
+        let updatedElement = {...updatedFormConfig[id]};
+
+        updatedElement.value = event.target.value;
+        updatedFormConfig[id] = updatedElement;
+        this.setState({formConfig: updatedFormConfig});
     }
 }
 
